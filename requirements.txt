@@ -1,1 +1,9 @@
-pyinstaller==5.2
+altgraph==0.17.2
+easygui==0.98.3
+future==0.18.2
+numpy==1.23.2
+opencv-python==4.6.0.66
+pefile==2022.5.30
+pyinstaller==5.3
+pyinstaller-hooks-contrib==2022.9
+pywin32-ctypes==0.2.0
