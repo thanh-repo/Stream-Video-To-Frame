@@ -1,5 +1,8 @@
 {
   "rtsp": "rtsp://admin:Password1!@180.83.55.124/profile2/media.smp",
-  "path": "D:\\StreamToFrame",
-  "interval": 1000
+  "ImagePath": "D:\\StreamToFrame\\Images",
+  "VideoPath": "D:\\StreamToFrame\\Videos",
+  "interval": 1000,
+  "SaveImage": false,
+  "SaveVideo": true
 }
