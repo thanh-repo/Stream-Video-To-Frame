@@ -7,7 +7,7 @@ import pathlib
 
 """
 pip freeze > requirements.txt
-pyinstaller --onefile --clean --icon=icon.ico ImageToFrame.py
+pyinstaller --onefile --clean --icon=icon.ico VideoToFrame.py
 """
 
 
@@ -19,27 +19,26 @@ try:
                                                        ("All Files", ".*")])
     head, tail = os.path.split(video_path)
     cap = cv2.VideoCapture(video_path)
-    fps = round(cap.get(cv2.CAP_PROP_FPS))
-    KPS = easygui.enterbox(f"Video source frame per second: {fps}.\nNumber of frame per second do you want to save?")
+    fps = int(cap.get(cv2.CAP_PROP_FPS))
+    interval = easygui.enterbox(f"Select interval you want to get image (millisecond)?")
+    int_interval = int(interval)
     save_dir = filedialog.askdirectory(title="Select save frame folder?", )
     save_dir = os.path.join(save_dir.replace("/", "\\"), tail)
     pathlib.Path(save_dir).mkdir(parents=True, exist_ok=True)
     EXTENSION = ".png"
-    print(f"Video source frame per second: {fps}")
-    hop = round(fps / int(KPS))
     curr_frame = 0
     image_count = 0
-    while (True):
+    count = 0
+    while True:
         ret, frame = cap.read()
         if not ret:
             break
-        if curr_frame % hop == 0:
+        if count*1000/fps >= int_interval:
             name = os.path.join(save_dir, f"{image_count:09d}{EXTENSION}")
-
             cv2.imwrite(name, frame)
-            print(f"Save frame at: {curr_frame}")
+            print(f'Successfully written at {int_interval}ms')
             image_count += 1
-        curr_frame += 1
+        count += 1
     cap.release()
 except Exception as e:
     print("Cannot start program")
