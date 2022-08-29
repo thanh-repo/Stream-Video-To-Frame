@@ -1,0 +1,5 @@
+{
+  "rtsp": "rtsp://admin:Password1!@180.83.55.124/profile2/media.smp",
+  "path": "D:\\StreamToFrame",
+  "interval": 1000
+}
